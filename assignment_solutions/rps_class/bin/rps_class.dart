@@ -8,6 +8,9 @@ void main(List<String> arguments) {
 
   rpsGame.pick(
     player1: rps_class.Rps.rock,
+  );
+
+  rpsGame.pick(
     player2: rps_class.Rps.scissors,
   );
 
