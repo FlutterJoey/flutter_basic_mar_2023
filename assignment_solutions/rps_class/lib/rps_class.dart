@@ -1,6 +1,11 @@
 class RpsGame {
-  void pick() {
-    
+  void pick({
+    required Rps player1,
+    required Rps player2,
+  }) {}
+
+  String play() {
+    return '';
   }
 }
 

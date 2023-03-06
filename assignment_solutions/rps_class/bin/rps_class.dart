@@ -7,9 +7,11 @@ void main(List<String> arguments) {
   );
 
   rpsGame.pick(
-    player1: rpsGame.rps.rock,
-    player2: rpsGame.rps.scissors,
+    player1: rps_class.Rps.rock,
+    player2: rps_class.Rps.scissors,
   );
 
-  print(rpsGame.play);
+  print(
+    rpsGame.play(),
+  ); // Joey picked Rock and won from Bram who picked scissors
 }
