@@ -23,16 +23,15 @@ void main(List<String> arguments) {
   print(helloWithNamed(name: 'Joey'));
 
   var list = ['apples', 'bananas', 'oranges'];
-  list.forEach((item) {
+  for (var item in list) {
     print('${list.indexOf(item)}: $item');
-  });
+  }
 
   num myNum = 1;
   if (myNum is int) {
     int myInt = myNum;
+    print(myInt);
   }
-
-  
 }
 
 String myFunction(String name) {
