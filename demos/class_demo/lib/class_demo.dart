@@ -6,6 +6,7 @@ Person? joey = const Person(
 );
 
 int calculate() {
+  // ignore: unused_local_variable
   var fruit = Fruit()
     ..amount = 10
     ..name = 'grape';
