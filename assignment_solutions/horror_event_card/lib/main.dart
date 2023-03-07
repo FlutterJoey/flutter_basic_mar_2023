@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:story_gen/story_gen.dart';
 
 main() {
   runApp(const EventCardApp());
@@ -13,21 +14,66 @@ class EventCardApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(),
-        body: Column(
-          children: const [
-            EventCard(
-              iconData: Icons.event,
-              characterName: 'Bram',
-              message: 'Bram was scared to death by a little mouse',
-            ),
-            EventCard(
-              iconData: Icons.electric_bolt_rounded,
-              characterName: 'Joey',
-              message: 'Joey fell of a mountain and died',
-            ),
+        body: StoryScreen(),
+      ),
+    );
+  }
+}
+
+class StoryScreen extends StatefulWidget {
+  const StoryScreen({super.key});
+
+  @override
+  State<StoryScreen> createState() => _StoryScreenState();
+}
+
+class _StoryScreenState extends State<StoryScreen> {
+  List<StoryBeatEvent> events = [];
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        ListView(
+          children: [
+            for (var event in events) ...[
+              EventCard(
+                iconData: Icons.electric_bolt_rounded,
+                characterName: event.mainActor.name,
+                message: event.message,
+              ),
+            ]
           ],
         ),
-      ),
+        FilledButton(
+          onPressed: () {
+            events.clear();
+            var generator = HorrorStoryGenerator();
+            generator.setScene(
+              Scene(
+                width: 10,
+                length: 10,
+                visibility: 3,
+                characters: [
+                  Character(
+                    name: 'Joey',
+                    archetype: Archetype.funny,
+                  ),
+                ],
+              ),
+            );
+            generator.addStoryEventListener((event) {
+              if (context.mounted) {
+                setState(() {
+                  events.add(event);
+                });
+              }
+            });
+            generator.generate(speed: Duration(seconds: 1));
+          },
+          child: Text('Start'),
+        ),
+      ],
     );
   }
 }
