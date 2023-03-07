@@ -19,8 +19,10 @@ void main() {
   );
 
   generator.addStoryEventListener((event) {
+    print(event.message);
+    print(event.mainActor.name);
     if (event.type == StoryBeatEventType.kill) {
-      print(event.mainActor.name);
+      print('DIED');
     }
   });
   generator.generate(speed: Duration(seconds: 1));
