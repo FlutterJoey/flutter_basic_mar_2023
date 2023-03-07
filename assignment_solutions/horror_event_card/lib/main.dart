@@ -108,7 +108,7 @@ class _EventCardState extends State<EventCard> {
                       characterName: widget.characterName,
                     );
                   }),
-                  (route) => !route.isFirst,
+                  (route) => route.isFirst,
                 );
               },
               icon: const Icon(Icons.chevron_right_rounded),
