@@ -57,6 +57,7 @@ class _EventCardState extends State<EventCard> {
     if (isRead) {
       color = Colors.red.shade200;
     }
+    var navigator = Navigator.of(context);
     return Container(
       height: 100,
       width: double.infinity,
@@ -101,6 +102,14 @@ class _EventCardState extends State<EventCard> {
                 setState(() {
                   isRead = true;
                 });
+                navigator.pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) {
+                    return DetailScreen(
+                      characterName: widget.characterName,
+                    );
+                  }),
+                  (route) => !route.isFirst,
+                );
               },
               icon: const Icon(Icons.chevron_right_rounded),
               label: const Text(
@@ -109,6 +118,31 @@ class _EventCardState extends State<EventCard> {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class DetailScreen extends StatelessWidget {
+  const DetailScreen({
+    required this.characterName,
+    Key? key,
+  }) : super(key: key);
+
+  final String characterName;
+
+  @override
+  Widget build(BuildContext context) {
+    var navigator = Navigator.of(context);
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(characterName),
+      ),
+      body: ElevatedButton(
+        onPressed: () {
+          navigator.pop();
+        },
+        child: Text('back'),
       ),
     );
   }
