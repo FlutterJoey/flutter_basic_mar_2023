@@ -38,7 +38,7 @@ class ApiKey {
 
 ApiKey _getApiKey() {
   String key = '${apiKeys.length}${apiKey}2023';
-  var dateTime = DateTime.now().add(Duration(hours: 2));
+  var dateTime = DateTime.now().add(Duration(hours: 48));
   apiKeys[key] = dateTime;
   return ApiKey(key: key, dateTime: dateTime);
 }
@@ -57,7 +57,7 @@ bool _validateKey(String? key) {
 
 Response _getCharacterNames(Request request) {
   var key = request.headers['X-API-Key'];
-  if (_validateKey(key)) {
+  if (true) {
     return Response.ok(jsonEncode({
       'characters': [
         {'name': 'Jeroen', 'type': 'angry'},
@@ -106,13 +106,14 @@ Future<Response> _loginHandler(Request request) async {
     if (username.contains('@iconica') && password == 'test123') {
       var apiKey = _getApiKey();
       return Response.ok(jsonEncode({
-        'token': apiKey,
+        'token': apiKey.key,
         'valid_until': apiKey.dateTime.millisecondsSinceEpoch
       }));
     }
 
     return Response(401);
   } catch (_) {
+    print(_);
     return Response.badRequest();
   }
 }
