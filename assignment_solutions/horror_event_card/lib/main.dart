@@ -14,7 +14,7 @@ class EventCardApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(),
-        body: StoryScreen(),
+        body: const StoryScreen(),
       ),
     );
   }
@@ -69,9 +69,9 @@ class _StoryScreenState extends State<StoryScreen> {
                 });
               }
             });
-            generator.generate(speed: Duration(seconds: 1));
+            generator.generate(speed: const Duration(seconds: 1));
           },
-          child: Text('Start'),
+          child: const Text('Start'),
         ),
       ],
     );
@@ -188,7 +188,7 @@ class DetailScreen extends StatelessWidget {
         onPressed: () {
           navigator.pop();
         },
-        child: Text('back'),
+        child: const Text('back'),
       ),
     );
   }

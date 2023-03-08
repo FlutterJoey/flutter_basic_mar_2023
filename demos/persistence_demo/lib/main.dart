@@ -135,10 +135,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     },
                   );
 
-                  print(characterResponse.body);
+                  debugPrint(characterResponse.toString());
                 }
               },
-              child: Text('Do some call'),
+              child: const Text('Do some call'),
             ),
           ],
         ),

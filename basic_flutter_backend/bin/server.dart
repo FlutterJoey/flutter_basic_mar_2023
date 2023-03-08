@@ -57,7 +57,7 @@ bool _validateKey(String? key) {
 
 Response _getCharacterNames(Request request) {
   var key = request.headers['X-API-Key'];
-  if (true) {
+  if (_validateKey(key)) {
     return Response.ok(jsonEncode({
       'characters': [
         {'name': 'Jeroen', 'type': 'angry'},
